@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <variable
+            name="login"
+            type="com.example.cybermonster.jetpack.mvvm.LoginModel" />
+        <variable
+            name="activity"
+            type="com.example.cybermonster.jetpack.mvvm.LoginActivity" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:text="返回"
+            android:onClick="@{()->activity.onBackPressed()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/name"
+            android:text="账号"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:text="@{login.n}"
+            android:onTextChanged="@{(text, start, before, count)->login.onNameChanged(text)}"
+            android:id="@+id/et_name"
+            app:layout_constraintTop_toTopOf="@+id/name"
+            app:layout_constraintBottom_toBottomOf="@+id/name"
+            app:layout_constraintStart_toEndOf="@+id/name"
+            android:layout_width="200dp"
+            android:layout_height="30dp"/>
+        <TextView
+            android:id="@+id/pass"
+            android:text="密码"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="100dp"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:text="@{login.p}"
+            android:onTextChanged="@{login::onPwdChanged}"
+            android:id="@+id/et_pass"
+            app:layout_constraintTop_toTopOf="@+id/pass"
+            app:layout_constraintBottom_toBottomOf="@+id/pass"
+            app:layout_constraintStart_toEndOf="@+id/pass"
+            android:layout_width="200dp"
+            android:layout_height="30dp"/>
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:text="登录"
+            android:enabled="@{login.isLogin}"
+            android:onClick="@{()->login.toLogin()}"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/pass"
+            app:layout_constraintStart_toStartOf="@+id/pass"
+            app:layout_constraintEnd_toEndOf="@+id/et_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tv_save"
+            android:text="存入"
+            android:enabled="@{login.isLogin}"
+            android:onClick="@{()->login.toLogin()}"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/pass"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/tv_get"
+            android:text="取出"
+            android:enabled="@{login.isLogin}"
+            android:onClick="@{()->login.toLogin()}"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/pass"
+            app:layout_constraintStart_toStartOf="@+id/tv_login"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
